@@ -1,0 +1,73 @@
+networks:
+  balionis-network:
+    name: balionis-network
+
+services:
+  local-producer:
+    container_name: local-ccs
+    hostname: local-ccs
+    image: balionis-wise-ccs:latest
+    ports:
+      - "9091:9090"
+      - "9001:9000"
+    environment:
+      JAVA_OPTS: "-Dspring.profiles.active=docker -Dlogback.configurationFile=/app/config/logback-docker.xml"
+      JAEGER_TRACING_URL: "http://local-jaeger:9411/api/v2/spans"
+    healthcheck:
+      test: curl -m 5 --silent --fail --request GET http://localhost:9090/api/v1/heartbeat > /dev/null || exit 1
+      interval: 5s
+      timeout: 2s
+      retries: 3
+    volumes:
+      - ./docker/config/ccs:/app/config
+    networks:
+      - balionis-network
+    profiles:
+      - service
+  local-prometheus:
+    image: prom/prometheus:latest
+    container_name: local-prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - 9090:9090
+    restart: unless-stopped
+    volumes:
+      - ./docker/config/prometheus:/etc/prometheus
+      - prometheus_data:/prometheus
+    networks:
+      - balionis-network
+    profiles:
+      - monitoring
+  local-grafana:
+    image: grafana/grafana:latest
+    container_name: local-grafana
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=grafana
+    volumes:
+      - ./docker/config/grafana/datasources:/etc/grafana/provisioning/datasources:ro
+      - ./docker/config/grafana/dashboards:/etc/grafana/provisioning/dashboards:ro
+    networks:
+      - balionis-network
+    depends_on:
+      - local-prometheus
+    profiles:
+      - monitoring
+  local-jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: local-jaeger
+    ports:
+      - "16686:16686" # the Jaeger UI
+      - "9411:9411"   # the Zipkin collector http
+    environment:
+      - COLLECTOR_ZIPKIN_HOST_PORT=:9411
+    networks:
+      - balionis-network
+    profiles:
+      - monitoring
+volumes:
+  prometheus_data:

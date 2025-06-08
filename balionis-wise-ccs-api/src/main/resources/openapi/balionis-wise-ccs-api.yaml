@@ -1,0 +1,55 @@
+---
+openapi: 3.0.0
+info:
+  title: Swagger Balionis Wise Currency Converter
+  description: |
+    This is a sample Balionis Wise Currency Converter
+  termsOfService: http://dainius.balionis.com/terms/
+  version: 1.0.0
+servers:
+  - url: https://dainius.balionis.com/api/1.0.0
+tags:
+  - name: heartbeat
+    description: Access to Balionis Wise Currency Converter heartbeat api
+  - name: currency
+    description: Access to Balionis Wise Currency Converter service api
+paths:
+  /api/v1/heartbeat:
+    get:
+      operationId: getHeartbeat
+      description: get heartbeat
+      tags:
+        - heartbeat
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetHeartbeatResponse'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+      required:
+        - code
+        - message
+    GetHeartbeatResponse:
+      type: object
+      properties:
+        checkTs:
+          type: string
+          format: date-time
+      required:
+        - checkTs
