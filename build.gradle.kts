@@ -20,7 +20,8 @@ val javaProjects = setOf(
 )
 
 val apiProjects = setOf(
-    "balionis-wise-ccs-api"
+    "balionis-wise-ccs-api",
+    "balionis-wise-mcs-api"
 )
 
 val dockerProjects = setOf(

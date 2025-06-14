@@ -1,16 +1,16 @@
 ---
 openapi: 3.0.0
 info:
-  title: Swagger Balionis Wise Currency Converter
+  title: Swagger Balionis Mastercard Currency Converter
   description: |
-    This is a sample Balionis Wise Currency Converter
+    This is a sample Balionis Wise Mastercard Currency Converter
   termsOfService: http://wise.balionis.com/terms/
   version: 1.0.0
 servers:
-  - url: https://ccs.wise.balionis.com/api/1.0.0
+  - url: https://mcs.wise.balionis.com/api/1.0.0
 tags:
   - name: heartbeat
-    description: Access to Balionis Wise Currency Converter heartbeat api
+    description: Access to Balionis Wise Mastercard Currency Converter heartbeat api
 paths:
   /api/v1/heartbeat:
     get:
