@@ -9,5 +9,5 @@ scrape_configs:
     scheme: http
     static_configs:
       - targets:
-          - local-css:9000
+          - local-ccs:9000
           - local-mcs:9000
