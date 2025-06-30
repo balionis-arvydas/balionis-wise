@@ -15,7 +15,7 @@ services:
       JAEGER_TRACING_URL: "http://local-jaeger:9411/api/v2/spans"
     healthcheck:
       test: curl -m 5 --silent --fail --request GET http://localhost:9090/api/v1/heartbeat > /dev/null || exit 1
-      interval: 5s
+      interval: 4s
       timeout: 2s
       retries: 3
     volumes:
