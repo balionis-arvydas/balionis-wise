@@ -20,6 +20,8 @@ dependencies {
     }
     implementation(Libs.SPRING_BOOT_STARTER_JETTY)
     implementation(Libs.WIREMOCK_JRE8_STANDALONE)
+
+    testImplementation(Libs.SPRING_BOOT_STARTER_TEST)
 }
 
 tasks.named<BootJar>("bootJar") {
