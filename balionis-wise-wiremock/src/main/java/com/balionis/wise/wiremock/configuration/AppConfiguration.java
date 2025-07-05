@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
 @Slf4j
 public class AppConfiguration {
 
-    private final WireMockProperties wireMockProperties;
+    private final AppConfigurationProperties appConfigurationProperties;
 
     private WireMockServer wireMockServer;
 
@@ -35,7 +35,7 @@ public class AppConfiguration {
     public WireMockServer buildWireMockServer(Notifier notifier) {
         var wireMockConfiguration = WireMockConfiguration.options()
                 .notifier(notifier)
-                .port(wireMockProperties.getPort())
+                .port(appConfigurationProperties.getPort())
                 .usingFilesUnderClasspath("BOOT-INF/classes/wiremock");
         return new WireMockServer(wireMockConfiguration);
     }

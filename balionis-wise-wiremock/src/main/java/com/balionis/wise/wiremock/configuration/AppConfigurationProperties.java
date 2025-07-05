@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "wiremock")
 @Slf4j
 @Data
-public class WireMockProperties {
+public class AppConfigurationProperties {
 
     private Integer port;
 
