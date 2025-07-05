@@ -1,0 +1,21 @@
+{
+  "request": {
+    "method":"GET",
+    "urlPath": "/mcs/api/v1/heartbeat",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "transformers": ["response-template"],
+    "jsonBody": {
+      "checkTs": "{{ now timezone='UTC' format='yyyy-MM-dd HH:mm:ssZ' }}"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

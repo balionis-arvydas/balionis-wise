@@ -38,6 +38,31 @@ make down
 ...
 ```
 
+### Test Mock
+
+```
+% curl -v -X GET http://localhost:8083/__admin/mappings
+...
+< HTTP/1.1 200 OK
+...
+{
+  "mappings" : [ {
+  ...
+  } ],
+  "meta" : {
+    "total" : 1
+  }
+}%                             
+...
+
+% curl -v -X GET http://localhost:8083/mcs/api/v1/heartbeat \
+--header "Content-Type: application/json"
+...
+< HTTP/1.1 200
+...
+{"checkTs":"2025-07-05 16:31:06+0000"}
+...
+
 ## Observe 
 
 ```

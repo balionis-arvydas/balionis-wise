@@ -17,7 +17,8 @@ plugins {
 
 val javaProjects = setOf(
     "balionis-wise-ccs-app",
-    "balionis-wise-mcs-app"
+    "balionis-wise-mcs-app",
+    "balionis-wise-mock-app"
 )
 
 val apiProjects = setOf(
@@ -27,7 +28,8 @@ val apiProjects = setOf(
 
 val dockerProjects = setOf(
     "balionis-wise-ccs-app",
-    "balionis-wise-mcs-app"
+    "balionis-wise-mcs-app",
+    "balionis-wise-mock-app"
 )
 
 subprojects {

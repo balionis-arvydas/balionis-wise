@@ -45,6 +45,26 @@ services:
       - balionis-network
     profiles:
       - service
+  local-mock:
+    container_name: local-mock
+    hostname: local-mcs
+    image: balionis-wise-mock:latest
+    ports:
+      - "9093:9090"
+      - "8083:8080"
+    environment:
+      JAVA_OPTS: "-Dspring.profiles.active=docker -Dlogback.configurationFile=/app/config/logback-docker.xml"
+    healthcheck:
+      test: curl -m 5 --silent --fail --request GET http://localhost:8080/__admin/health > /dev/null || exit 1
+      interval: 5s
+      timeout: 2s
+      retries: 3
+    volumes:
+      - ./docker/config/wiremock:/app/config
+    networks:
+      - balionis-network
+    profiles:
+      - service
   local-prometheus:
     image: prom/prometheus:latest
     container_name: local-prometheus
