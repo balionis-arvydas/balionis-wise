@@ -46,9 +46,9 @@ services:
     profiles:
       - service
   local-mock:
-    container_name: local-mock
+    container_name: local-wiremock
     hostname: local-mcs
-    image: balionis-wise-mock:latest
+    image: balionis-wise-wiremock:latest
     ports:
       - "9093:9090"
       - "8083:8080"

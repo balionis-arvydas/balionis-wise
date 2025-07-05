@@ -20,13 +20,10 @@ dependencies {
     }
     implementation(Libs.SPRING_BOOT_STARTER_JETTY)
     implementation(Libs.WIREMOCK_JRE8_STANDALONE)
-
-    testImplementation(Libs.SPRING_BOOT_STARTER_TEST)
-
 }
 
 tasks.named<BootJar>("bootJar") {
-    mainClass.set("com.balionis.wise.mock.Application")
+    mainClass.set("com.balionis.wise.wiremock.Application")
     archiveFileName.set("${archiveBaseName.get()}-all.${archiveExtension.get()}");
 }
 

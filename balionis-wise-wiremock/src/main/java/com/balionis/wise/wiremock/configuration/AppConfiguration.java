@@ -1,6 +1,6 @@
-package com.balionis.wise.mock.configuration;
+package com.balionis.wise.wiremock.configuration;
 
-import com.balionis.wise.mock.util.AppLoggingNotifier;
+import com.balionis.wise.wiremock.util.AppLoggingNotifier;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.common.Notifier;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
@@ -15,10 +15,9 @@ import org.springframework.context.annotation.Configuration;
 @Slf4j
 public class AppConfiguration {
 
-    private final AppConfigurationProperties appConfigurationProperties;
+    private final WireMockProperties wireMockProperties;
 
     private WireMockServer wireMockServer;
-
 
     @PostConstruct
     public void start() {
@@ -34,7 +33,6 @@ public class AppConfiguration {
     }
 
     public WireMockServer buildWireMockServer(Notifier notifier) {
-        var wireMockProperties = appConfigurationProperties.getWiremock();
         var wireMockConfiguration = WireMockConfiguration.options()
                 .notifier(notifier)
                 .port(wireMockProperties.getPort())

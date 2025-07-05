@@ -1,8 +1,5 @@
-app:
-  service:
-    name: ${spring.application.name}
-    wiremock:
-      port: 8080
+wiremock:
+  port: 8080
 
 server:
   port: 9090
@@ -11,7 +8,7 @@ server:
 
 spring:
   application:
-    name: balionis-wise-mock
+    name: balionis-wise-wiremock
   main:
     banner-mode: "off"
 

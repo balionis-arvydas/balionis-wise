@@ -1,4 +1,4 @@
-package com.balionis.wise.mock.util;
+package com.balionis.wise.wiremock.util;
 
 import com.github.tomakehurst.wiremock.common.Notifier;
 import lombok.extern.slf4j.Slf4j;

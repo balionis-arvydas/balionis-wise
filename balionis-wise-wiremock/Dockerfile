@@ -2,7 +2,7 @@ FROM openjdk:17-jdk-alpine@sha256:57c2bd64588e39a7d00581b094136e4b13d2056b5a4f5a
 
 WORKDIR /app
 
-COPY ./build/libs/balionis-wise-mock-app-all.jar ./app.jar
+COPY ./build/libs/balionis-wise-wiremock-all.jar ./app.jar
 
 RUN apk --no-cache add curl
 
